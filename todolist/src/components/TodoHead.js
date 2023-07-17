@@ -27,18 +27,19 @@ const TasksLeft = styled.div`
   font-weight: bold;
 `;
 
-function TodoHead() {
-    const today = new Date();
+function TodoHead({ selectedDate }) {
+    const todos = useTodoState();
+    const undoneTasks = todos.filter(todo => !todo.done);
 
-    const dateString = today.toLocaleString('ko-KR', {
+    const dateString = selectedDate.toLocaleString('ko-KR', {
         year: 'numeric',
         month: 'long',
         day: 'numeric'
     });
 
-    const dayName = today.toLocaleString('ko-KR', { weekday: 'long' });
-    const todos = useTodoState();
-    const undoneTasks = todos.filter(todo => !todo.done);
+    const dayName = selectedDate.toLocaleString('ko-KR', {
+        weekday: 'long'
+    });
 
     return (
         <TodoHeadBlock>
