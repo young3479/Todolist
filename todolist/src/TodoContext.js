@@ -1,7 +1,6 @@
 import React, { createContext, useReducer, useContext, useRef, useState } from 'react';
 import PropTypes from "prop-types";
 
-
 const TodoStateContext = createContext(null);
 const TodoDispatchContext = createContext(null);
 const TodoNextIdContext = createContext(null);
@@ -10,8 +9,7 @@ const TodoSelectedDateContext = createContext(null);
 function todoReducer(state, action) {
     switch (action.type) {
         case 'CREATE':
-            return [action.todo, ...state];  // 수정된 부분
-           // return state.concat(action.todo);
+            return state.concat(action.todo);
         case 'TOGGLE':
             return state.map(todo =>
                 todo.id === action.id ? { ...todo, done: !todo.done } : todo
