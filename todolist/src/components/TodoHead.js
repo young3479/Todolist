@@ -46,6 +46,7 @@ function TodoHead({ selectedDate }) {
             <h1>{dateString}</h1>
             <div className="day">{dayName}</div>
             <TasksLeft>할 일 {undoneTasks.length}개 남음</TasksLeft>
+            <TasksLeft>할 일 {todos.length}개 남음</TasksLeft>
         </TodoHeadBlock>
     );
 }
