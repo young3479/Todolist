@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import TodoItem from './TodoItem';
-//import { useTodoState } from '../TodoContext';
+//import { useSelectedDate, useTodoState } from '../TodoContext';
 
 const TodoListBlock = styled.div`
   flex: 1;
@@ -31,6 +31,25 @@ function TodoList() {
             console.error("Can't fetch todos.", error);
         }
     };
+
+    // main 브랜치의 변경 사항
+    // const todos = useTodoState();
+    // const selectedDate = useSelectedDate();
+
+    // const filteredTodos = todos.filter(todo => {
+    //     const todoDate = new Date(todo.date);
+    //     const selectedDateOnly = new Date(
+    //         selectedDate.getFullYear(),
+    //         selectedDate.getMonth(),
+    //         selectedDate.getDate()
+    //     );
+
+    //     return (
+    //         todoDate.getFullYear() === selectedDateOnly.getFullYear() &&
+    //         todoDate.getMonth() === selectedDateOnly.getMonth() &&
+    //         todoDate.getDate() === selectedDateOnly.getDate()
+    //     );
+    // });
 
     return (
         <TodoListBlock>
