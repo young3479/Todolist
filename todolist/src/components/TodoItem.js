@@ -41,11 +41,11 @@ const CheckCircle = styled.div`
   margin-right: 20px;
   cursor: pointer;
   ${props =>
-    props.done &&
-    css`
-      border: 1px solid #38d9a9;
-      color: #38d9a9;
-    `}
+          props.done &&
+          css`
+            border: 1px solid #38d9a9;
+            color: #38d9a9;
+          `}
 `;
 
 const Text = styled.div`
@@ -53,27 +53,32 @@ const Text = styled.div`
   font-size: 21px;
   color: #495057;
   ${props =>
-    props.done &&
-    css`
-      color: #ced4da;
-    `}
+          props.done &&
+          css`
+            color: #ced4da;
+          `}
 `;
 
-
-function TodoItem({ id, done, text }) {
+function TodoItem({ id, done, text, date }) {
     const dispatch = useTodoDispatch();
 
     const onToggle = () => {
         dispatch({
             type: 'TOGGLE',
-            id
+            id,
+            done,
+            text,
+            date,
         });
     };
 
     const onRemove = () => {
         dispatch({
             type: 'REMOVE',
-            id
+            id,
+            done,
+            text,
+            date,
         });
     };
 
@@ -89,9 +94,12 @@ function TodoItem({ id, done, text }) {
         </TodoItemBlock>
     );
 }
+
 TodoItem.propTypes = {
     id: PropTypes.number.isRequired,
     done: PropTypes.bool.isRequired,
-    text: PropTypes.string.isRequired
+    text: PropTypes.string.isRequired,
+    date: PropTypes.instanceOf(Date).isRequired,
 };
+
 export default React.memo(TodoItem);

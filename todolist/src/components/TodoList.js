@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import TodoItem from './TodoItem';
+
 //import { useSelectedDate, useTodoState } from '../TodoContext';
+
 
 const TodoListBlock = styled.div`
   flex: 1;
@@ -12,6 +14,7 @@ const TodoListBlock = styled.div`
 `;
 
 function TodoList() {
+
     const [todos, setTodos] = useState([]);
     // eslint-disable-next-line
     //const [todoState, dispatch] = useTodo();
@@ -51,18 +54,15 @@ function TodoList() {
     //     );
     // });
 
+
     return (
         <TodoListBlock>
-            {todos.map(todo => (
+            {filteredTodos.map(todo => (
                 <TodoItem
                     id={todo.id}
+
                     text={todo.title}  // 변경: API가 반환하는 속성에 맞게 수정
                     done={todo.completed}  // 변경: API가 반환하는 속성에 맞게 수정
                     key={todo.id} // id,text,targetdate,done
-                />
-            ))}
-        </TodoListBlock>
-    );
-}
 
 export default TodoList;
