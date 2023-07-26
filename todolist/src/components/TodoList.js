@@ -57,12 +57,19 @@ function TodoList() {
 
     return (
         <TodoListBlock>
-            {filteredTodos.map(todo => (
+            {todos.map(todo => (
                 <TodoItem
                     id={todo.id}
-
                     text={todo.title}  // 변경: API가 반환하는 속성에 맞게 수정
                     done={todo.completed}  // 변경: API가 반환하는 속성에 맞게 수정
+                    date={todo.date}   // 날짜데이터
                     key={todo.id} // id,text,targetdate,done
+                />
+            ))}
+        </TodoListBlock>
+    );
+}
+
+
 
 export default TodoList;

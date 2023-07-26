@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.time.LocalDate;
 import java.util.List;
 
+//CORS 설정 관련
+import org.springframework.web.bind.annotation.CrossOrigin;
+
+
 @Controller
 public class TodoController {
   TodoService todoService;
@@ -17,6 +21,13 @@ public class TodoController {
     super();
     this.todoService = todoService;
   }
+
+  @CrossOrigin(origins = "http://localhost:3000") // 프론트엔드 서버 주소를 여기에 적습니다.
+  @RequestMapping("api/todos") //프론트 작업물 리액트 연동
+  public String listTodos(ModelMap modelMap){
+    return "redirect:https://jsonplaceholder.typicode.com/todos";
+  }
+
 
   @RequestMapping("list-todos")
   public String listAllTodos(ModelMap modelMap){
