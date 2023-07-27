@@ -60,10 +60,10 @@ function TodoList() {
             {todos.map(todo => (
                 <TodoItem
                     id={todo.id}
-                    text={todo.title}  // 변경: API가 반환하는 속성에 맞게 수정
-                    done={todo.completed}  // 변경: API가 반환하는 속성에 맞게 수정
-                    date={todo.date}   // 날짜데이터
-                    key={todo.id} // id,text,targetdate,done
+                    text={todo.text}  // 수정: title 대신 text 사용
+                    done={todo.done}  // 수정: completed 대신 done 사용
+                    date={todo.date}  // 날짜 데이터
+                    key={todo.id}
                 />
             ))}
         </TodoListBlock>
