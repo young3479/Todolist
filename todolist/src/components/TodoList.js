@@ -28,7 +28,7 @@ function TodoList() {
         try {
             // 변경할 부분: 실제 API 주소로 교체
             // const response = await axios.get('http://localhost:8080/todos');
-            const response = await axios.get('http://localhost:8080/api/todos');
+            const response = await axios.get('http://localhost:8080/data');
             setTodos(response.data);
         } catch (error) {
             console.error("Can't fetch todos.", error);
