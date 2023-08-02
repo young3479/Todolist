@@ -59,6 +59,11 @@ const Text = styled.div`
           `}
 `;
 
+const DateText = styled.div`
+  font-size: 12px;
+  color: #868e96;
+`;
+
 function TodoItem({ id, done, text, date }) {
     const dispatch = useTodoDispatch();
 
@@ -66,9 +71,6 @@ function TodoItem({ id, done, text, date }) {
         dispatch({
             type: 'TOGGLE',
             id,
-            done,
-            text,
-            date,
         });
     };
 
@@ -76,18 +78,16 @@ function TodoItem({ id, done, text, date }) {
         dispatch({
             type: 'REMOVE',
             id,
-            done,
-            text,
-            date,
         });
     };
 
     return (
         <TodoItemBlock>
             <CheckCircle done={done} onClick={onToggle}>
-                {done && <MdDone />}
+                {done ? <MdDone /> : null}
             </CheckCircle>
             <Text done={done}>{text}</Text>
+            <DateText>{date.toLocaleDateString()}</DateText>{/*할일 옆에 날짜 생성*/}
             <Remove onClick={onRemove}>
                 <MdDelete />
             </Remove>

@@ -1,4 +1,5 @@
 import React from 'react';
+import DateSelector from './DateSelector';
 import styled from 'styled-components';
 import { useTodoState } from '../TodoContext';
 
@@ -43,10 +44,10 @@ function TodoHead({ selectedDate }) {
 
     return (
         <TodoHeadBlock>
+            <DateSelector selectedDate={selectedDate} />
             <h1>{dateString}</h1>
             <div className="day">{dayName}</div>
             <TasksLeft>할 일 {undoneTasks.length}개 남음</TasksLeft>
-            <TasksLeft>할 일 {todos.length}개 남음</TasksLeft>
         </TodoHeadBlock>
     );
 }

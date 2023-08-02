@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { Grid } from '@mui/material';
-import DatePicker from 'react-datepicker';
-import TodoTemplate from './components/TodoTemplate';
 import TodoHead from './components/TodoHead';
+import TodoTemplate from './components/TodoTemplate';
 import TodoList from './components/TodoList';
 import TodoCreate from './components/TodoCreate';
 import { TodoProvider } from './TodoContext';
@@ -17,19 +16,11 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
-    const [selectedDate, setSelectedDate] = useState(new Date());
-
-    const handleDateChange = date => {
-        setSelectedDate(date);
-    };
-
+    const [selectedDate] = useState(new Date());
     return (
         <TodoProvider>
             <GlobalStyle />
             <Grid container spacing={2}>
-                <Grid item xs={24} md={12} sx={{ display: 'flex', justifyContent: 'center' }}>
-                    <DatePicker selected={selectedDate} onChange={handleDateChange} inline />
-                </Grid>
                 <Grid item xs={24} md={12}>
                     <TodoTemplate>
                         <TodoHead selectedDate={selectedDate} />
