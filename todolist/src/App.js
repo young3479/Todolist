@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { createGlobalStyle } from 'styled-components';
-import { Grid } from '@mui/material';
 import TodoHead from './components/TodoHead';
 import TodoTemplate from './components/TodoTemplate';
 import TodoList from './components/TodoList';
 import TodoCreate from './components/TodoCreate';
 import { TodoProvider } from './TodoContext';
-
 import 'react-datepicker/dist/react-datepicker.css';
 
 const GlobalStyle = createGlobalStyle`
@@ -16,21 +14,20 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
-    const [selectedDate] = useState(new Date());
+
     return (
         <TodoProvider>
             <GlobalStyle />
-            <Grid container spacing={2}>
-                <Grid item xs={24} md={12}>
-                    <TodoTemplate>
-                        <TodoHead selectedDate={selectedDate} />
-                        <TodoList />
-                        <TodoCreate />
-                    </TodoTemplate>
-                </Grid>
-            </Grid>
+                <TodoTemplate>
+                    <TodoHead />
+                    <TodoList />
+                    <TodoCreate />
+                </TodoTemplate>
         </TodoProvider>
     );
 }
 
 export default App;
+
+
+

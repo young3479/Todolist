@@ -1,7 +1,7 @@
 import React from 'react';
 import DateSelector from './DateSelector';
 import styled from 'styled-components';
-import { useTodoState } from '../TodoContext';
+import {useSelectedDate, useTodoState} from '../TodoContext';
 
 const TodoHeadBlock = styled.div`
   h1 {
@@ -28,9 +28,10 @@ const TasksLeft = styled.div`
   font-weight: bold;
 `;
 
-function TodoHead({ selectedDate }) {
+function TodoHead() {
     const todos = useTodoState();
     const undoneTasks = todos.filter(todo => !todo.done);
+    const [selectedDate] = useSelectedDate();
 
     const dateString = selectedDate.toLocaleString('ko-KR', {
         year: 'numeric',
@@ -44,7 +45,7 @@ function TodoHead({ selectedDate }) {
 
     return (
         <TodoHeadBlock>
-            <DateSelector selectedDate={selectedDate} />
+            <DateSelector />
             <h1>{dateString}</h1>
             <div className="day">{dayName}</div>
             <TasksLeft>할 일 {undoneTasks.length}개 남음</TasksLeft>
@@ -52,4 +53,6 @@ function TodoHead({ selectedDate }) {
     );
 }
 
+
 export default TodoHead;
+

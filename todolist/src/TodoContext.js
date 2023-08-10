@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useContext, useRef, useState } from 'react';
+import React, {createContext, useReducer, useContext, useRef, useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 
 const TodoStateContext = createContext(null);
@@ -21,37 +21,21 @@ function todoReducer(state, action) {
     }
 }
 
-const initialTodos = [
-    {
-        id: 1,
-        text: '아침 운동',
-        done: true,
-        date: new Date(), // 현재 날짜
-    },
-    {
-        id: 2,
-        text: '코딩 테스트 문제 풀기',
-        done: true,
-        date: new Date(), // 현재 날짜
-    },
-    {
-        id: 3,
-        text: '스터디 하기',
-        done: false,
-        date: new Date('2023-07-12'), // 예시: 2023년 7월 12일
-    },
-    {
-        id: 4,
-        text: '리액트 공부하기',
-        done: false,
-        date: new Date('2023-07-12'), // 예시: 2023년 7월 12일
-    },
-];
-
 export function TodoProvider({ children }) {
-    const [state, dispatch] = useReducer(todoReducer, initialTodos);
-    const nextId = useRef(5);
+    const [state, dispatch] = useReducer(todoReducer, []);
+    const nextId = useRef(1);
     const [selectedDate, setSelectedDate] = useState(new Date()); // 선택된 날짜 상태 생성
+
+    useEffect(() => {
+        // data.json에서 할 일 데이터를 가져와서 상태로 설정
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+                dispatch({ type: 'SET_INITIAL_TODOS', todos: data });
+                nextId.current = data.length + 1;
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    }, []);
 
     return (
         <TodoStateContext.Provider value={state}>

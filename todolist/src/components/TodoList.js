@@ -13,14 +13,14 @@ const TodoListBlock = styled.div`
 
 function TodoList() {
     const [todos, setTodos] = useState([]);
-    const [selectedDate] = useSelectedDate(); // 선택된 날짜를 가져옵니다.
+    const [selectedDate] = useSelectedDate(); // 선택된 날짜를 가져옴
 
     useEffect(() => {
         fetchTodos();
     }, []);
 
     useEffect(() => {
-        fetchTodos(); // 선택된 날짜가 변경될 때마다 할 일 목록을 다시 가져옵니다.
+        fetchTodos(); // 선택된 날짜가 변경될 때마다 할 일 목록을 다시 가져옴
     }, [selectedDate]);
 
     const fetchTodos = async () => {
@@ -53,3 +53,4 @@ function TodoList() {
 }
 
 export default TodoList;
+
